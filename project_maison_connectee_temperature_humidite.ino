@@ -22,19 +22,19 @@ public:
 // *********************************** LED ***********************************
 class LED : public Actionneur { // classe fille
 public:
-  LED(int p) : Actionneur(p) {}
+  LED(int p) : Actionneur(p) {} // declaration de la broche a utiliser pour le branchement
 
-  void actionner() override {
-    digitalWrite(pin, HIGH);  // allume LED
-    etat = true;
+  void actionner() override {   // redefinition pour LED
+    digitalWrite(pin, HIGH);    // allume LED
+    etat = true;                // LED allumee
   }
 
-  void arreter() override {
-    digitalWrite(pin, LOW);   // éteint LED
-    etat = false;
+  void arreter() override {     // redefinition pour LED
+    digitalWrite(pin, LOW);     // éteint LED
+    etat = false;               // LED eteinte
   }
 
-  void clignoter(int delai = 200) { 
+  void clignoter(int delai = 200) {
     actionner();            
     delay(delai);           
     arreter();              
@@ -43,7 +43,7 @@ public:
 };
 
 // *********************************** BUZZER ***********************************
-class Buzzer : public Actionneur {
+class Buzzer : public Actionneur {  // classe fille
 private:
 
   void jouerSon() {
@@ -57,43 +57,43 @@ private:
 
 public:
 
-  Buzzer(int p) : Actionneur(p) {}
+  Buzzer(int p) : Actionneur(p) {}  // declaration de la broche a utiliser pour le branchement
 
-  void actionner() override {
+  void actionner() override {       // redefinition pour Buzzer
     jouerSon();
-    etat = true;
+    etat = true;                    // Buzzer allume
   }
 
-  void arreter() override {
+  void arreter() override {         // redefinition pour Buzzer
     noTone(pin);
-    etat = false;
+    etat = false;                   // Buzzer eteint
   }
 };
 
 /* ===================== VENTILATEUR DIGITAL ===================== */
-class Ventilateur : public Actionneur {
+class Ventilateur : public Actionneur { // classe fille
 public:
-  Ventilateur(int p) : Actionneur(p) {}
+  Ventilateur(int p) : Actionneur(p) {} // declaration de la broche a utiliser pour le branchement
 
-  void actionner() override {
-    digitalWrite(pin, LOW); 
-    etat = true;
+  void actionner() override {           // redefinition pour Ventilateur
+    digitalWrite(pin, LOW);             // Ventilateur allume
+    etat = true;                        // Ventilateur allume
   }
 
-  void arreter() override {
-    digitalWrite(pin, HIGH);  
-    etat = false;
+  void arreter() override {             // redefinition pour Ventilateur
+    digitalWrite(pin, HIGH);            // Ventilateur eteint
+    etat = false;                       // Ventilateur eteint
   }
 };
 
 /* ===================== FENETRE ===================== */
-class Fenetre {
-  Servo servo;      
-  int pin;          
-  bool ouverte;     
+class Fenetre {                                            // classe à part
+  Servo servo;
+  int pin;
+  bool ouverte;                                            // equivalent a etat pour les classes precedentes
 
 public:
-  Fenetre(int p) : pin(p), ouverte(false) {
+  Fenetre(int p) : pin(p), ouverte(false) {                // declaration de la broche a utiliser pour le branchement et definition de l'etat par defaut
     servo.attach(pin); 
     servo.write(0);    
   }
