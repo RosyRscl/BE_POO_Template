@@ -1,2 +1,2 @@
-# BE_POO_Template
-Projet de base pour Ardouino
+# BE_POO 4A AE FISA
+Maison connectée - Température et Humidité
