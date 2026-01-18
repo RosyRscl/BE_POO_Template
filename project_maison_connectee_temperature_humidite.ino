@@ -114,7 +114,7 @@ class CapteurTH {                                                               
 public:
   CapteurTH(float t, float h) : seuilT(t), seuilH(h), temperature(0), humidite(0) {} // declaration des valeurs des seuils a comparer et initialisation des valeurs de temperature et d'humidite
 
-  void begin() { sht31.begin(0x44); }                                                // declaration de la broche a utiliser pour le branchement, correspond a D1 ??????????????????????????????????????????????????????????????
+  void begin() { sht31.begin(0x44); }                                                // declaration de la broche a utiliser pour le branchement, correspond aux ports I2C
 
   void mesurer() {
     temperature = sht31.readTemperature();                                           // mesure de la temperature
