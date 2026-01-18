@@ -43,11 +43,11 @@ public:
 };
 
 // *********************************** BUZZER ***********************************
-class Buzzer : public Actionneur {  // classe fille
+class Buzzer : public Actionneur { // classe fille
 private:
 
   void jouerSon() {
-    for (int i = 0; i < 3; i++) {   // 3 bips
+    for (int i = 0; i < 3; i++) {  // emission de 3 bips
       tone(pin, 800, 200);
       delay(250);
       noTone(pin);
@@ -57,16 +57,16 @@ private:
 
 public:
 
-  Buzzer(int p) : Actionneur(p) {}  // declaration de la broche a utiliser pour le branchement
+  Buzzer(int p) : Actionneur(p) {} // declaration de la broche a utiliser pour le branchement
 
-  void actionner() override {       // redefinition pour Buzzer
+  void actionner() override {      // redefinition pour Buzzer
     jouerSon();
-    etat = true;                    // Buzzer allume
+    etat = true;                   // Buzzer allume
   }
 
-  void arreter() override {         // redefinition pour Buzzer
+  void arreter() override {        // redefinition pour Buzzer
     noTone(pin);
-    etat = false;                   // Buzzer eteint
+    etat = false;                  // Buzzer eteint
   }
 };
 
@@ -98,8 +98,8 @@ public:
     servo.write(0);    
   }
 
-  void ouvrir()  { servo.write(180); ouverte = true; }     // ouverture de la fenetre
-  void fermer()  { servo.write(0);   ouverte = false; }    // fermeture de la fenetre
+  void ouvrir() { servo.write(180); ouverte = true; }      // ouverture de la fenetre
+  void fermer() { servo.write(0); ouverte = false; }       // fermeture de la fenetre
   bool getEtat() { return ouverte; }
 };
 
@@ -118,14 +118,14 @@ public:
 
   void mesurer() {
     temperature = sht31.readTemperature();                                           // mesure de la temperature
-    humidite    = sht31.readHumidity();                                              // mesure de l'humidite
+    humidite = sht31.readHumidity();                                                 // mesure de l'humidite
   }
 
   float getTemp() { return temperature; }                                            // affichage de la temperature mesuree
-  float getHum()  { return humidite; }                                               // affichage de l'humidite mesuree
+  float getHum() { return humidite; }                                                // affichage de l'humidite mesuree
 
   bool depasseSeuilTemp() { return temperature > seuilT; }                           // comparaison de la temperature a son seuil
-  bool depasseSeuilHum()  { return humidite > seuilH; }                              // comparaison de l'humidite a son seuil
+  bool depasseSeuilHum() { return humidite > seuilH; }                               // comparaison de l'humidite a son seuil
 };
 
 
@@ -139,14 +139,14 @@ private:
   CapteurTH capteurTH;                                                   // instanciation du capteur de temperature
 
 public:
-  CarteESP8266()
-    : led(D3),                                                           // declaration du pinout de la LED
+  CarteESP8266() :
+      led(D3),                                                           // declaration du pinout de la LED
       buzzer(D7),                                                        // declaration du pinout du buzzer
       ventilateur(D5),                                                   // declaration du pinout du ventilateur
       fenetre(D6),                                                       // declaration du pinout du servomoteur
       capteurTH(30.0, 70.0) {}                                           // declaration des seuils de temperature (30°C) et d'humidite (70%)
 
-  void setup() {
+  void setup() {                                                         // definition de la configuration du programme principal
     Serial.begin(9600);
     capteurTH.begin();                                                   // demarrage des mesures du capteur de temperature et d'humidite
     led.arreter();                                                       // initialisation de la LED a eteinte
@@ -195,5 +195,5 @@ public:
 
 CarteESP8266 carte;                                                      // instanciation de la carte ESP8266
 
-void setup() { carte.setup(); }                                          // configuration de la carte ESP8266
-void loop()  { carte.loop();  }                                          // demarrage du programme principal
+void setup() { carte.setup(); }                                          // configuration du programme principal
+void loop() { carte.loop(); }                                            // demarrage du programme principal
