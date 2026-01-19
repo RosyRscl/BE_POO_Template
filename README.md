@@ -1,6 +1,3 @@
-# BE_POO 4A AE FISA
-Maison connectée - Température et Humidité
-
 # BE C++ – Maison connectée : Température et Humidité
 
 ## Description du projet
